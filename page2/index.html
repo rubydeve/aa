@@ -1,0 +1,3294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rewards Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ariel&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i,800,800i&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-mod.css" />
+    <script src="./assets/jquery.js"></script>
+
+    <style>
+      #p_modal1, #p_modal2, #p_modal3{
+        padding: 0 !important;
+      }
+      body {
+        background-color: #eee;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: Open Sans, sans-serif;
+      }
+
+      .modal-strip {
+        background-color: #2b6ec2;
+        text-align: center;
+        color: white;
+      }
+
+      .question__title {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #373737;
+        font-family: "Ariel", sans-serif;
+        font-weight: bold;
+        display: inline-block;
+        border-bottom: 1px solid #373737;
+        margin: 20px 0;
+      }
+      img.banner {
+        position: fixed;
+        bottom: 0;
+        width: 100px;
+        z-index: 9999;
+      }
+
+      .question__question {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: bold;
+      }
+
+      .question__option {
+        background-color: #2b6ec2;
+        border-color: #2b6ec2;
+        margin: 20px 0;
+      }
+
+      .question__option:hover,
+      .question__option:focus,
+      .question__option:active {
+        background-color: #2b6ec2 !important;
+        border-color: #2b6ec2 !important;
+      }
+
+      .transparent-modal .modal-content,
+      #offer-wall .modal-content,
+      #loading-screen .modal-content {
+        background-color: transparent;
+        border-color: transparent;
+      }
+
+      .transparent-modal .modal-body {
+        box-shadow: none;
+      }
+
+      .transparent-modal__child,
+      .offers,
+      .loading__content,
+      .loading__heading {
+        padding: 20px;
+      }
+
+      .transparent-modal__child--no-margin {
+        margin-bottom: 0;
+      }
+
+      .offers__price-today {
+        background-color: #ffff00;
+        display: inline-block;
+        padding: 0 1px;
+      }
+
+      .offers__expires-in {
+        margin-top: 20px;
+      }
+
+      .comments {
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        padding: 20px;
+      }
+
+      .comments__image {
+        border-radius: 50%;
+      }
+
+      .offers__thanks-msg {
+        font-weight: bold;
+        font-family: "Ariel", sans-serif;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #0000;
+      }
+
+      .offers__text {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .offers__select-one-text {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .offers__big-text {
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .offers__time-remaining {
+        text-align: center;
+      }
+
+      .offers__time-remaining .countdown-yellow {
+        color: #f44336;
+        font-weight: bold;
+      }
+
+      .offers__list {
+        margin-top: 25px;
+      }
+
+      .offers__list-item {
+        border-top: 2px solid #ccc;
+        margin-bottom: 0px;
+        padding: 10px 0;
+        padding-right: 20px;
+      }
+
+      .offers__list-item:last-child {
+        border-bottom: 2px solid #ccc;
+      }
+
+      .offers__details {
+        font-size: 14px;
+        margin: 10px 0;
+      }
+
+      .offers__name {
+        font-weight: medium;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .offers__description {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .offers__btn-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding: 15px;
+      }
+
+      .comments__comment-info {
+        padding-bottom: 30px;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #eee;
+      }
+
+      .comments__username {
+        font-weight: bold !important;
+        font-size: 20px !important;
+        margin-bottom: 5px;
+        color: #333333;
+        margin-top: 25px;
+        margin-left: 10px;
+      }
+
+      .comments__username:hover {
+        text-decoration: none;
+      }
+
+      .comments__time {
+        color: #adb2bb;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+
+      .comments__time:hover {
+        color: #adb2bb;
+        text-decoration: none;
+      }
+
+      .comments__profile {
+        margin-left: 10px;
+      }
+
+      .comments__comment {
+        font-size: 14px;
+        margin-bottom: 40px;
+        color: #333333;
+      }
+
+      .comments__item {
+        margin-bottom: 20px;
+      }
+
+      .comments__like-comment-strip {
+        border: 1px solid #eee;
+        padding: 15px;
+        border-left: none;
+        border-right: none;
+        display: flex;
+        color: #afb4bd;
+        font-weight: 500;
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+
+      .comments__like-btn {
+        cursor: pointer;
+        margin-right: 50px;
+      }
+
+      .comments__comment-btn {
+        cursor: pointer;
+      }
+
+      .comments__input {
+        margin-left: 10px;
+        font-size: 13px;
+      }
+
+      .comments__input::placeholder {
+        text-align: center;
+        color: #afb4bd;
+      }
+
+      .comments__submit-msg {
+        display: none;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+
+      .brand-color {
+        color: #2b6ec2;
+      }
+
+      .heading-font {
+        font-family: "Ariel", sans-serif;
+        font-weight: bold;
+      }
+
+      .congratulations {
+        background-color: #f08804;
+        display: inline-block;
+        padding: 3px 8px;
+        color: white;
+        font-family: "Open Sans", sans-serif;
+        border-radius: 8px;
+        margin: 10px 0;
+        margin-left: -3px;
+      }
+
+      .countdown-yellow {
+        background-color: #ffff00;
+        padding: 2px;
+      }
+
+      .brand-btn {
+        background-color: #2b6ec2;
+        border-color: #2b6ec2;
+        font-weight: 900;
+      }
+
+      .brand-btn:hover,
+      .brand-btn:focus,
+      .brand-btn:active {
+        background-color: #2b6ec2 !important;
+        border-color: #2b6ec2 !important;
+      }
+
+      .survey-about {
+        font-family: "Ariel", sans-serif;
+        font-weight: bold;
+        color: #373737;
+        font-size: 18px;
+      }
+
+      .questions-modal-brand-heading {
+        font-family: "Ariel", sans-serif;
+        color: #2b6ec2;
+        letter-spacing: 1px;
+        font-weight: bolder;
+      }
+
+      .question__footer {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .question__footer-heading {
+        font-size: 16px;
+        font-family: "Ariel", sans-serif;
+      }
+
+      .question__date {
+        font-size: 15px;
+        color: #2b6ec2;
+        font-weight: bold;
+        margin-top: -5px;
+      }
+
+      .claim-reward-btn {
+        background-color: #000;
+        border-color: #0000;
+        margin-top: 20px;
+      }
+
+      .claim-reward-btn:active,
+      .claim-reward-btn:focus,
+      .claim-reward-btn:hover {
+        background-color: #2b6ec2 !important;
+        border-color: #2b6ec2 !important;
+        margin-top: 20px;
+      }
+
+      .claim-reward-btn--expired {
+        background-color: red;
+        border-color: red;
+      }
+
+      .claim-reward-btn--expired:hover,
+      .claim-reward-btn--expired:active,
+      .claim-reward-btn--expired:focus {
+        background-color: red !important;
+        border-color: red !important;
+      }
+
+      .no-underline-link:hover {
+        text-decoration: none;
+      }
+
+      .comments__guest-user-picture {
+        text-align: center;
+      }
+
+      .comments__guest-user-picture img {
+        border-radius: 50%;
+      }
+
+      .comments__guest-textarea {
+        display: block;
+        border: none;
+        background-color: #f3f3f3;
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        outline: none;
+        margin-bottom: 10px;
+      }
+
+      .comments__guest-form {
+        text-align: center;
+      }
+
+      .comments__guest-btn {
+        border: none;
+        background-color: #3c5a99;
+        text-transform: uppercase;
+        border-radius: 5px;
+        color: white;
+        padding: 5px 50px;
+      }
+
+      .modal-content {
+        position: relative;
+      }
+
+      /*		.terms-and-conditions-link {
+        position: absolute;
+        bottom: -70%;
+        left: 50%;
+        margin-bottom: 20px;
+        transform: translateX(-50%);
+        z-index: 99999;
+        color: #eeeeeedb;
+        font-weight: lighter;
+        text-align: center;
+          width: fit-content;
+          max-width: 600px;
+      }
+  */
+
+      .terms-and-conditions-link {
+        color: #eeeeeedb;
+        font-weight: lighter;
+        text-align: center;
+        max-width: 600px;
+        margin-top: 80px;
+      }
+
+      .t-and-c {
+        font-weight: lighter;
+        color: #eeeeeedb;
+        text-decoration: underline;
+      }
+      .t-and-c:hover {
+        color: #a6a6a6;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .offers__details {
+          padding-left: 20px;
+        }
+      }
+    </style>
+    <style>
+      .validate {
+        padding: 0 20px;
+      }
+
+      .validate p {
+        margin-bottom: 0;
+      }
+      #szliderbar {
+        width: 0;
+        height: 4px;
+        background: #fc9a18;
+      }
+    </style>
+    <style>
+      #provesrc-debug-mode *,
+      #provesrc-notification-container * {
+        box-sizing: border-box;
+        line-height: 17px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        letter-spacing: 0 !important;
+      }
+      #provesrc-debug-mode .provesrc-logo > img {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #provesrc-notification-container .pfs-link svg {
+        display: inline-block !important;
+        width: 13px !important;
+        height: 13px !important;
+        margin-bottom: -2px;
+      }
+      #provesrc-debug-mode .debug-mode-container span.green-dot {
+        display: inline-block;
+        width: 9px;
+        margin-right: 5px;
+        height: 9px;
+        background: #42ac05;
+        border-radius: 50%;
+      }
+      #provesrc-debug-mode .debug-mode-container img {
+        width: 35px;
+        text-align: center;
+      }
+      #provesrc-debug-mode .debug-mode-container {
+        text-align: center;
+      }
+      #provesrc-debug-mode .installed-note {
+        margin-bottom: 2px;
+        font-size: 0.9rem;
+        color: #7205f7 !important;
+      }
+      #provesrc-debug-mode span.admin-note {
+        color: #838383;
+        font-weight: 400;
+      }
+      #provesrc-debug-mode {
+        background-color: #fff;
+        bottom: 46%;
+        color: #7205f7 !important;
+        left: -4px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 8px;
+        border: 3px solid #7225f3;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+      #provesrc-debug-mode,
+      #provesrc-widget-area {
+        z-index: 2147483647;
+      }
+      #provesrc-debug-mode,
+      #provesrc-notification-container {
+        position: fixed;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.combo-type
+        .bubble-icon {
+        padding-right: 0 !important;
+        padding-left: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.combo-type
+        .bubble-content {
+        margin-right: auto;
+        margin-left: 0;
+        padding-left: 21px;
+        padding-right: 0;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container .bubble-body.rtl-bubble {
+        direction: rtl !important;
+        text-align: right !important;
+        font-family: Arial, sans-serif;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble
+        .bubble-content
+        .bubble-cta
+        .cta-arrow::after {
+        border-right: 0;
+        border-top: 0;
+        border-left: 0.1em solid;
+        border-bottom: 0.1em solid;
+        margin-left: 0;
+        margin-right: 0.3em;
+      }
+      #provesrc-notification-container .bubble-body.rtl-bubble .bubble-icon {
+        border-right: 0;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble
+        #ps-bubble-close {
+        left: 6px !important;
+        right: inherit !important;
+      }
+      #provesrc-notification-container .bubble-body.rtl-bubble .bubble-content {
+        margin-left: 0;
+        margin-right: 75px;
+        text-align: right;
+        padding-right: 0;
+        padding-left: 4px;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container.bottom-center .bubble-body,
+      #provesrc-notification-container.bottom-left .bubble-body,
+      #provesrc-notification-container.top-left .bubble-body {
+        float: left;
+      }
+      #provesrc-notification-container.bottom-right .bubble-body,
+      #provesrc-notification-container.top-right .bubble-body {
+        float: right;
+      }
+      #provesrc-notification-container.bottom-center {
+        left: 50%;
+        bottom: 10px;
+        margin-left: -165px;
+      }
+      #provesrc-notification-container.bottom-left {
+        left: 10px;
+        bottom: 10px;
+      }
+      #provesrc-notification-container.bottom-right {
+        right: 10px;
+        bottom: 10px;
+      }
+      #provesrc-notification-container.top-right {
+        right: 10px;
+        top: 10px;
+      }
+      #provesrc-notification-container.top-left {
+        left: 10px;
+        top: 10px;
+      }
+      #provesrc-notification-container .bubble-body:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        top: -10px;
+      }
+      #provesrc-notification-container .bubble-body {
+        cursor: pointer !important;
+        direction: ltr !important;
+        text-align: left !important;
+        width: 330px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 6px;
+        background-color: #fff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+        -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+        -moz-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+        border: 1px solid #ececec;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+        transition: all 0.3s;
+        top: 0;
+      }
+      #provesrc-notification-container
+        .bubble-content
+        .bubble-cta
+        .cta-arrow::after {
+        position: relative;
+        content: "";
+        display: inline-block;
+        width: 0.4em;
+        height: 0.4em;
+        border-right: 0.1em solid;
+        border-top: 0.1em solid;
+        transform: rotate(45deg) !important;
+        margin-left: 0.3em;
+        font-size: 17px;
+        -webkit-animation: provesrc-arrow-bouncer 2s infinite;
+        animation: provesrc-arrow-bouncer 2s infinite;
+      }
+      #provesrc-notification-container .bubble-content .bubble-cta {
+        line-height: 17px;
+        font-size: 12px;
+        color: #a0a0a0;
+        padding: 3px 0;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        margin-top: 6px;
+        display: inline-block;
+      }
+      #provesrc-notification-container .bubble-body .bubble-content {
+        margin-left: 75px;
+        padding-top: 8px;
+        padding-right: 6px;
+        padding-bottom: 5px;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-time
+        a,
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-time
+        span {
+        display: inline !important;
+        font-size: 11px !important;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-time
+        * {
+        color: #999;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-time {
+        display: block;
+        color: #999;
+        font-size: 11px !important;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-description
+        > span {
+        color: #323232 !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-description {
+        line-height: 17px;
+        font-size: 12px;
+        color: #323232 !important;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-title
+        span {
+        font-weight: 700;
+        display: inline-block;
+        padding: 3px 5px;
+        background-color: rgba(120, 37, 243, 0.09);
+        border-radius: 3px;
+        color: #7825f3;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-content
+        .bubble-title {
+        line-height: 17px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #000;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container .bubble-body .bubble-icon {
+        float: left;
+        height: 100%;
+        width: 67px;
+        display: block;
+        position: absolute;
+      }
+      #provesrc-notification-container .bubble-body .bubble-icon img {
+        height: 67px;
+        width: 67px;
+        padding: 5px;
+        margin-top: auto;
+        margin-bottom: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 2px;
+        right: 0;
+      }
+      #provesrc-notification-container .bubble-body .bubble-time .pfs-link a {
+        color: #7225f3;
+        text-decoration: none;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container
+        .bubble-body
+        .bubble-time
+        .pfs-link
+        span.bubble-bolt {
+        color: #999;
+      }
+      #provesrc-notification-container .bubble-body .bubble-time .pfs-link {
+        display: inline-block;
+        font-size: 10px !important;
+        font-family: Lato, helvetica, arial, sans-serif !important;
+      }
+      #provesrc-notification-container .text-capitalize {
+        text-transform: capitalize;
+      }
+      #provesrc-notification-container .text-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #provesrc-notification-container .no-text-select {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      #provesrc-notification-container .mx-auto {
+        margin-right: auto !important;
+        margin-left: auto !important;
+      }
+      #provesrc-notification-container.ps-show {
+        display: block;
+      }
+      #provesrc-notification-container.ps-hide {
+        display: none;
+      }
+      #provesrc-notification-container #ps-bubble-close:hover {
+        opacity: 0.8;
+      }
+      #provesrc-notification-container #ps-bubble-close {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        height: 13px;
+        width: 13px;
+        transform: rotate(45deg);
+        cursor: pointer;
+        opacity: 0.5;
+      }
+      #provesrc-widget-area .ps-animated {
+        -webkit-animation-duration: 0.8s;
+        animation-duration: 0.8s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+      #provesrc-notification-container .no-visible {
+        visibility: hidden;
+      }
+      #provesrc-notification-container .is-visible {
+        visibility: visible;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        a#ps-stream-product-link:hover {
+        -webkit-text-decoration: underline !important;
+        -moz-text-decoration: underline !important;
+        -ms-text-decoration: underline !important;
+        -o-text-decoration: underline !important;
+        text-decoration: underline !important;
+        cursor: pointer !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        a#ps-stream-product-link {
+        font-weight: 700 !important;
+        color: #454545;
+        -webkit-text-decoration: none;
+        -moz-text-decoration: none;
+        -ms-text-decoration: none;
+        -o-text-decoration: none;
+        text-decoration: none;
+      }
+      #provesrc-notification-container .bubble-body.stream-type .bubble-icon {
+        border-right: none;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        .stream-location {
+        font-size: 12px !important;
+        opacity: 0.6 !important;
+        font-weight: 400 !important;
+        color: inherit !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        .bubble-icon.bubble-icon-bg {
+        background-color: #f8f8f8;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        .bubble-icon
+        span.bubble-initials {
+        width: 65px;
+        border-radius: 5px;
+        padding: 1px;
+        left: 1px;
+        height: 67px;
+        margin-top: auto;
+        margin-bottom: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: #f8f8f8;
+        color: #444a50;
+        font-weight: bolder;
+        font-size: 27px;
+        right: 0;
+        text-align: center;
+        line-height: 64px !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        .bubble-icon
+        img {
+        border-radius: 5px;
+        padding: 0;
+        left: 1px;
+        max-width: 65px;
+        max-height: 65px;
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        .bubble-content
+        .bubble-title
+        span {
+        background-color: transparent;
+        padding: 0 0 2px !important;
+        color: #7825f3;
+        max-width: 90%;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type
+        .bubble-content
+        .bubble-description {
+        margin-top: 0;
+      }
+      #provesrc-notification-container .bubble-body.stream-type.rtl-bubble {
+        border-radius: inherit;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type.rtl-bubble
+        .bubble-icon
+        img {
+        right: 2px;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type.rtl-bubble
+        .bubble-icon {
+        border-right: 0;
+        border-left: none;
+      }
+      #provesrc-notification-container
+        .bubble-body.stream-type.rtl-bubble
+        .bubble-icon
+        span.bubble-initials {
+        margin-right: 1px;
+      }
+      #provesrc-notification-container .bubble-body.combo-type {
+        background-color: #fff;
+        width: 350px;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.combo-type
+        .bubble-icon {
+        border-left: 0;
+      }
+      #provesrc-notification-container .bubble-body.combo-type .bubble-icon {
+        border-right: 0;
+        width: 35%;
+        padding-right: 5px;
+      }
+      #provesrc-notification-container .bubble-body.combo-type .bubble-time {
+        color: #7627f3;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-time
+        .pfs-link
+        a {
+        color: #7627f3;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-time
+        .pfs-link {
+        padding: 1px 5px;
+        background-color: #fff;
+        border-radius: 2px;
+        margin-top: 5px;
+        border: 1px solid #7627f3;
+        color: #7627f3;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-content.no-branding {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-content
+        .bubble-description {
+        color: #7627f3;
+        font-size: 13px;
+      }
+      #provesrc-notification-container #ps-bubble-close > span.close-before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #c4c4c4;
+        position: absolute;
+        left: 0;
+        top: 5px;
+      }
+      #provesrc-notification-container #ps-bubble-close > span.close-after {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 3px;
+        background-color: #c4c4c4;
+        position: absolute;
+        left: 5px;
+        top: 0;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        #ps-bubble-close
+        > span.close-after,
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        #ps-bubble-close
+        > span.close-before {
+        background-color: #7627f3;
+      }
+      #provesrc-notification-container .bubble-body.combo-type .bubble-content {
+        margin-left: auto;
+        padding-top: 10px;
+        padding-right: 21px;
+        padding-bottom: 10px;
+        width: 65%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-icon
+        .combo-number
+        > .refer {
+        font-weight: 400 !important;
+        font-size: 13px !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-icon
+        .combo-number
+        > .num-value {
+        font-size: 28px !important;
+        font-weight: 900 !important;
+        line-height: 30px !important;
+      }
+      #provesrc-notification-container .scale {
+        animation: pound 1s;
+        animation-delay: 1s;
+        animation-iteration-count: 3;
+      }
+      @keyframes pound {
+        from {
+          transform: none;
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        to {
+          transform: none;
+        }
+      }
+      .provesrc-arrow-bouncer {
+        -webkit-animation: provesrc-arrow-bouncer 2s infinite;
+        animation: provesrc-arrow-bouncer 2s infinite;
+      }
+      @-webkit-keyframes provesrc-arrow-bouncer {
+        0%,
+        100%,
+        20%,
+        50%,
+        80% {
+          -webkit-transform: translateX(0) rotate(45deg);
+          transform: translateX(0) rotate(45deg);
+        }
+        40% {
+          -webkit-transform: translateX(-5px) rotate(45deg);
+          transform: translateX(-5px) rotate(45deg);
+        }
+        60% {
+          -webkit-transform: translateX(-3px) rotate(45deg);
+          transform: translateX(-3px) rotate(45deg);
+        }
+      }
+      @keyframes provesrc-arrow-bouncer {
+        0%,
+        100%,
+        20%,
+        50%,
+        80% {
+          -webkit-transform: translateX(0) rotate(45deg);
+          transform: translateX(0) rotate(45deg);
+        }
+        40% {
+          -webkit-transform: translateX(-5px) rotate(45deg);
+          transform: translateX(-5px) rotate(45deg);
+        }
+        60% {
+          -webkit-transform: translateX(-3px) rotate(45deg);
+          transform: translateX(-3px) rotate(45deg);
+        }
+      }
+      #provesrc-notification-container
+        .bubble-body.combo-type
+        .bubble-icon
+        .combo-number {
+        position: relative;
+        float: left;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #7627f3;
+        width: 100%;
+        text-align: center;
+      }
+      @-webkit-keyframes psFadeInUp {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes psFadeInUp {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      .psFadeInUp {
+        -webkit-animation-name: psFadeInUp;
+        animation-name: psFadeInUp;
+      }
+      @-webkit-keyframes fadeInUp {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes psBounceInUp {
+        from {
+          opacity: 0.5;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      .psBounceInUp {
+        -webkit-animation-name: psBounceInUp;
+        animation-name: psBounceInUp;
+      }
+      @-webkit-keyframes psBounceInDown {
+        from {
+          opacity: 0.5;
+          -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes psBounceInDown {
+        from {
+          opacity: 0.5;
+          -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      .psBounceInDown {
+        -webkit-animation-name: psBounceInDown;
+        animation-name: psBounceInDown;
+      }
+      @-webkit-keyframes psFadeOutDown {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+      }
+      @keyframes psFadeOutDown {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+        }
+      }
+      .psFadeOutDown {
+        -webkit-animation-name: psFadeOutDown;
+        animation-name: psFadeOutDown;
+      }
+      @-webkit-keyframes psFadeOutUp {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+        }
+      }
+      @keyframes psFadeOutUp {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+        }
+      }
+      .psFadeOutUp {
+        -webkit-animation-name: psFadeOutUp;
+        animation-name: psFadeOutUp;
+      }
+      @media only screen and (max-width: 815px) {
+        #provesrc-notification-container {
+          bottom: 0 !important;
+          left: 0 !important;
+          width: 100%;
+          max-width: 100%;
+        }
+        #provesrc-notification-container .bubble-body:hover {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          -webkit-transition: none;
+          -moz-transition: none;
+          -ms-transition: none;
+          -o-transition: none;
+          transition: none;
+          top: 0;
+        }
+        #provesrc-notification-container .bubble-body.combo-type,
+        #provesrc-notification-container .bubble-body.live-type {
+          width: 100% !important;
+        }
+        #provesrc-notification-container > .bubble-body {
+          width: 100%;
+          max-width: 100%;
+          border-radius: 0;
+        }
+        #provesrc-notification-container .bubble-content .bubble-cta {
+          margin-bottom: 0;
+          margin-top: 0;
+        }
+        #provesrc-notification-container.top-left,
+        #provesrc-notification-container.top-right {
+          right: 0 !important;
+          top: 0 !important;
+          height: 0;
+        }
+        #provesrc-notification-container.bottom-center {
+          margin-left: 0;
+        }
+        #provesrc-notification-container.bottom-center,
+        #provesrc-notification-container.bottom-left,
+        #provesrc-notification-container.bottom-right {
+          right: 0 !important;
+          bottom: 0 !important;
+        }
+        #provesrc-notification-container #ps-bubble-close span.close-after {
+          height: 13px !important;
+        }
+        #provesrc-notification-container #ps-bubble-close span.close-before {
+          width: 13px !important;
+        }
+        #provesrc-notification-container #ps-bubble-close {
+          padding: 15px !important;
+          top: 11px !important;
+          right: -1px !important;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-live-pulse {
+          float: left;
+          width: 67px;
+          display: block;
+          position: absolute;
+          border-right: none;
+          height: 100%;
+          margin-top: 0 !important;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-live-pulse
+          > svg {
+          height: 50px !important;
+          padding: 5px;
+          margin-top: auto;
+          margin-bottom: auto;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content {
+          margin-left: 50px !important;
+          text-align: inherit !important;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content
+          > .bubble-time {
+          flex: 0 1 100%;
+          margin-top: 4px;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content
+          > .bubble-description
+          > span {
+          vertical-align: middle;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content
+          > .bubble-description {
+          display: inline-block;
+          font-size: 14px !important;
+          margin-bottom: 0;
+          line-height: inherit !important;
+          margin-top: 0 !important;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content
+          > .bubble-title
+          > span {
+          vertical-align: sub;
+          font-weight: bolder !important;
+          display: inline-block !important;
+          line-height: inherit !important;
+          padding: 2px 8px !important;
+          border-radius: 4px !important;
+          min-width: 0 !important;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content
+          > .bubble-title {
+          margin-right: 6px;
+          line-height: inherit !important;
+          font-size: 15px !important;
+          margin-top: 0 !important;
+          display: inline-block !important;
+        }
+        #provesrc-notification-container
+          > .bubble-body.live-type
+          > .bubble-content {
+          min-height: 60px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          text-align: unset !important;
+        }
+        #provesrc-notification-container
+          .bubble-body.live-type.rtl-bubble
+          > .bubble-content
+          > .bubble-title {
+          margin-right: 0;
+          margin-left: 6px !important;
+        }
+        #provesrc-notification-container
+          .bubble-body.live-type.rtl-bubble
+          > .bubble-content {
+          margin-left: 0 !important;
+          margin-right: 50px !important;
+        }
+      }
+      #provesrc-bubble-body-container.bubble-body.plan-limit-reached
+        > .limit-content
+        > strong {
+        color: #f03e45;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+      #provesrc-bubble-body-container.bubble-body.plan-limit-reached
+        > .limit-content {
+        font-size: 0.8rem;
+        padding: 6px;
+        color: #767676;
+        text-align: center;
+      }
+      #provesrc-bubble-body-container.bubble-body.plan-limit-reached
+        > .bubble-time {
+        text-align: center;
+        padding: 7px 0;
+      }
+      #provesrc-bubble-body-container.bubble-body.plan-limit-reached
+        > .limit-title {
+        background: #fff5f6;
+        color: #ed3d44;
+        font-weight: 700;
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+        border-radius: 3px;
+        padding: 5px 0 5px 0;
+        text-align: center;
+      }
+      #provesrc-bubble-body-container.bubble-body.plan-limit-reached {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 300px;
+      }
+      #provesrc-remarketing-container {
+        position: absolute;
+        width: 300px;
+        border-radius: 3px;
+        background: #fff;
+        text-align: center;
+        left: 0;
+        bottom: 5px;
+        border: 3px solid #7625f3;
+        padding: 5px;
+        min-height: 100px;
+        cursor: pointer;
+      }
+      #provesrc-bubble-body-container.plan-limit-reached .lock-icon,
+      #provesrc-debug-mode .lock-icon,
+      #provesrc-remarketing-container .lock-icon {
+        background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjM2MS4xMThweCIgaGVpZ2h0PSIzNjEuMTE4cHgiIHZpZXdCb3g9IjAgMCAzNjEuMTE4IDM2MS4xMTgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDM2MS4xMTggMzYxLjExODsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGcgaWQ9Il94MzJfMzcuX0xvY2tlZCI+DQoJCTxnPg0KCQkJPHBhdGggZD0iTTI3NC43NjUsMTQxLjNWOTQuMjA1QzI3NC43NjUsNDIuMTcyLDIzMi41ODMsMCwxODAuNTU5LDBjLTUyLjAzMiwwLTk0LjIwNSw0Mi4xNzItOTQuMjA1LDk0LjIwNVYxNDEuMw0KCQkJCWMtMTcuMzQsMC0zMS40LDE0LjA2LTMxLjQsMzEuNHYxNTcuMDE2YzAsMTcuMzQ0LDE0LjA2LDMxLjQwMiwzMS40LDMxLjQwMmgxODguNDExYzE3LjM0MSwwLDMxLjM5OC0xNC4wNTksMzEuMzk4LTMxLjQwMlYxNzIuNw0KCQkJCUMzMDYuMTY0LDE1NS4zNiwyOTIuMTA2LDE0MS4zLDI3NC43NjUsMTQxLjN6IE0xMTcuNzU2LDk0LjIwNWMwLTM0LjY5LDI4LjEyLTYyLjgwMyw2Mi44MDMtNjIuODAzDQoJCQkJYzM0LjY4NSwwLDYyLjgwNSwyOC4xMTIsNjIuODA1LDYyLjgwM1YxNDEuM0gxMTcuNzU2Vjk0LjIwNXogTTI3NC43NjUsMzI5LjcxNUg4Ni4zNTRWMTcyLjcwOGgxODguNDExVjMyOS43MTV6DQoJCQkJIE0xNjQuODU4LDI2Mi41NTh2MjAuMDU0YzAsOC42NjQsNy4wMzUsMTUuNzAxLDE1LjcwMSwxNS43MDFjOC42NjQsMCwxNS43MDEtNy4wMzcsMTUuNzAxLTE1LjcwMXYtMjAuMDU0DQoJCQkJYzkuMzM3LTUuNDQxLDE1LjcwMS0xNS40NTYsMTUuNzAxLTI3LjA0NmMwLTE3LjM0OC0xNC4wNjItMzEuNDEtMzEuNDAyLTMxLjQxYy0xNy4zNCwwLTMxLjQsMTQuMDYyLTMxLjQsMzEuNDENCgkJCQlDMTQ5LjE1OSwyNDcuMTAyLDE1NS41MTcsMjU3LjExNywxNjQuODU4LDI2Mi41NTh6Ii8+DQoJCTwvZz4NCgk8L2c+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==);
+        background-size: 14px;
+        display: inline-block;
+        width: 18px;
+        opacity: 0.3;
+        height: 14px;
+        background-repeat: no-repeat;
+        margin-bottom: -1px;
+      }
+      #provesrc-bubble-body-container.plan-limit-reached .money-back {
+        color: #03ab33 !important;
+        padding-bottom: 5px;
+        font-weight: 700;
+      }
+      #provesrc-bubble-body-container .limit-cta > a.box-cta {
+        display: block;
+        padding: 3px 0;
+        background: #03ab33;
+        color: #fff;
+        border: 2px solid #03ab33;
+        border-radius: 2px;
+        width: 100px;
+        font-size: 0.8rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 7px;
+        margin-top: 7px;
+        font-weight: 700;
+      }
+      #provesrc-remarketing-container a.box-cta {
+        display: block;
+        padding: 6px;
+        background: #7625f3;
+        color: #fff;
+        border: 1px solid #6d1fe7;
+        border-radius: 3px;
+      }
+      #provesrc-remarketing-container .box-content {
+        padding: 15px;
+        margin-top: 0;
+        font-size: 14px;
+        line-height: 19px !important;
+      }
+      #provesrc-bubble-body-container .box-title {
+        padding: 5px;
+        background: #f7f7f7;
+        color: #9f9f9f;
+        border-radius: 3px;
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      #provesrc-remarketing-container .box-title {
+        padding: 5px;
+        background: #f7f7f7;
+        color: #9f9f9f;
+        border-radius: 3px;
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        text-align: center;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type.rtl-bubble
+        > .bubble-content {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      #provesrc-notification-container .bubble-body.live-type {
+        background-color: #fff;
+        width: 250px;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-content
+        > .bubble-title
+        > span {
+        font-weight: bolder !important;
+        display: inline-block !important;
+        line-height: 35px;
+        padding: 3px 10px !important;
+        border-radius: 4px !important;
+        min-width: 120px;
+        background-color: #f2e9ff;
+        color: #7825f3;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-content
+        > .bubble-title {
+        line-height: 35px;
+        font-size: 21pt;
+        margin-top: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-live-pulse
+        svg
+        > circle {
+        stroke: #24a03c;
+        fill: #24a03c !important;
+        stroke-width: 5px;
+        stroke-opacity: 1;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-live-pulse {
+        margin-top: 10px;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-live-pulse
+        svg.ps-pulse-dot {
+        height: 25px;
+        width: 100% !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-live-pulse
+        svg
+        .pulse {
+        fill: #fff !important;
+        fill-opacity: 0;
+        transform-origin: 50% 50%;
+        animation-duration: 2s;
+        animation-name: _ps-pulse;
+        animation-iteration-count: infinite;
+      }
+      @keyframes _ps-pulse {
+        from {
+          stroke-width: 3px;
+          stroke-opacity: 1;
+          transform: scale(0.3);
+        }
+        to {
+          stroke-width: 0;
+          stroke-opacity: 0;
+          transform: scale(2);
+        }
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-content
+        > .bubble-description {
+        line-height: 25px;
+        font-size: 14px;
+      }
+      #provesrc-notification-container
+        .bubble-body.live-type
+        > .bubble-content {
+        padding: 8px 15px 8px 15px !important;
+        margin-left: 0;
+        text-align: center;
+      }
+      #provesrc-notification-container
+        .bubble-body.informational-type
+        .bubble-content
+        .bubble-title
+        span {
+        padding: 3px 0;
+        background-color: transparent !important;
+        border-radius: 0;
+        color: #2d2d2d;
+      }
+      #provesrc-notification-container
+        .bubble-body.informational-type
+        .bubble-content
+        .bubble-description {
+        font-size: 13px !important;
+        color: #5e5e5e !important;
+        margin-bottom: 4px;
+        margin-top: 2px;
+        padding-right: 10px;
+      }
+      #provesrc-notification-container .bubble-body.informational-type {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+      }
+      #provesrc-notification-container
+        .bubble-body.informational-type.rtl-bubble
+        .bubble-content
+        .bubble-description {
+        padding-right: 0;
+        padding-left: 10px;
+      }
+      #provesrc-notification-container
+        .bubble-body.informational-type.rtl-bubble
+        .bubble-time
+        .ps-link {
+        direction: ltr !important;
+      }
+      #provesrc-notification-container
+        .bubble-body.informational-type
+        .bubble-time
+        .ps-link {
+        margin-left: -2px;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.review-type
+        .bubble-description
+        > span {
+        padding-right: 0;
+        padding-left: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.review-type
+        ._ps-review-rating {
+        padding-right: 0;
+        padding-left: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.review-type
+        ._ps-review-rating
+        img._ps-review-source {
+        margin-right: 0;
+        margin-left: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.rtl-bubble.review-type
+        .bubble-time
+        .pfs-link {
+        float: left;
+      }
+      #provesrc-notification-container
+        .bubble-body.review-type
+        .bubble-time
+        .pfs-link {
+        float: right;
+      }
+      #provesrc-notification-container
+        .bubble-body.review-type
+        .bubble-description
+        > span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-height: 16px;
+        margin: 2px 0 8px 0;
+        padding-right: 5px;
+        max-height: 50px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        -o-text-overflow: ellipsis;
+        -ms-text-overflow: ellipsis;
+        font-style: italic;
+        font-size: 13px;
+      }
+      #provesrc-notification-container
+        .bubble-body.review-type
+        .bubble-title
+        > span {
+        padding: 3px 0;
+      }
+      #provesrc-notification-container
+        .bubble-body.review-type
+        ._ps-review-rating
+        img._ps-review-source {
+        width: 11px;
+        margin-right: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.review-type
+        ._ps-review-rating {
+        display: inline-block;
+        padding-right: 5px;
+      }
+      #provesrc-notification-container
+        .bubble-body.review-type
+        ._ps-review-rating
+        ._ps-review-rating-star {
+        color: #ffc100;
+        font-size: 14px !important;
+      }
+      #provesrc-notification-container {
+        z-index: 2147483647;
+      }
+      @media only screen and (max-width: 815px) {
+        #provesrc-notification-container {
+          z-index: 999999998;
+        }
+      }
+      #provesrc-widget-area {
+        display: none;
+      }
+    </style>
+    <style>
+      .picture-column__image {
+        border: medium none;
+        padding: 9px 16px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+      }
+
+      @media (max-width: 768px) {
+        .picture-column {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+
+        .picture-column__image {
+          flex: 1;
+          position: absolute;
+          top: 20%;
+          width: 130%;
+          left: -3%;
+        }
+
+        .picture-column__stars {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+      @media (max-width: 375px) {
+        .picture-column {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+
+        .picture-column__image {
+          flex: 1;
+          position: absolute;
+          top: 20%;
+          width: 180%;
+          left: -30%;
+        }
+
+        .picture-column__stars {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+      .iphone-img-card {
+        width: 100%;
+        object-fit: fill;
+      }
+      @media (max-width: 771px) {
+        .iphone-img-card {
+          width: 100%;
+          object-fit: fill;
+        }
+      }
+      .question__date .today-month,
+      .question__date .today-date,
+      .question__date .today-year {
+        color: rgb(0, 0, 0);
+      }
+      .bg-black,
+      button[data-dismiss="modal"], a[data-dismiss="modal"]{
+        background-color: #232f3e;
+        color: #fff;
+      }
+      .bg-brown {
+        background-color: rgb(29, 29, 31);
+      }
+      .bg-white,
+      .terms-and-conditions-link,
+      .terms-and-conditions-link a {
+        background: white;
+        color: rgb(29, 29, 31);
+      }
+      #myModal {
+        padding-left: 0px !important;
+      }
+    </style>
+  </head>
+  <body class="modal-open bg-white">
+    <div
+      id="myModal"
+      class="modal transparent-modal show"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-modal="true"
+      style="display: block"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+        >
+          <span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent-modal__child--no-margin"
+            >
+              <p class="">
+                <strong class="congratulations">CONGRATULATIONS! </strong><br />
+                Your IP location <strong id="ip-info"></strong>is one of 10 we
+                randomly select every <span id="daye-name-2"></span> to
+                participate in a short survey about your shopping experience
+                with Amazon.<br /><br />
+                <img src="assets/images/ipd.jpg" class="iphone-img-card" />
+              </p>
+
+              <h6 class="modal-title heading-font mb-2">
+                Attention: This survey expires today,
+                <span id="today-month-1"></span>
+                <span id="today-date-1"></span>, <span id="today-year-1"></span>
+              </h6>
+              Complete this short survey about your experience with us and you
+              may win a brand new iPad Pro worth $989!<br /><br />
+              <p>
+                ( Pay Shipping Only If Won ) This special is available until
+                <span id="daye-name-1"></span>:
+                <small
+                  ><span class="today-day">Saturday</span>,
+                  <span class="today-month">April</span>
+                  <span class="today-date">23</span>,
+                  <span class="today-year">2022</span></small
+                >
+              </p>
+              <p>
+                <strong>TIME REMAINING:</strong>
+                <span class="countdown-yellow"
+                  ><span class="countdown-minutes">09</span>:<span
+                    class="countdown-seconds"
+                    >29</span
+                  ></span
+                >
+              </p>
+              <div
+                class="modal-footer"
+                style="flex-direction: column; justify-content: center"
+              >
+                <button
+                  type="button"
+                  class="btn btn-primary brand-btn w-100"
+                  style="font-size: 20px"
+                  id="accept-btn"
+                  data-dismiss="modal"
+                >
+                  Start Survey
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="question-1"
+      class="modal transparent-modal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent-modal__child--no-margin"
+            >
+              <div class="question">
+                <div style="text-align: center" class="animated fadeIn">
+                  <div class="question__title">Question 1 of 6</div>
+                </div>
+                <h3 class="question__question animated fadeIn">
+                  Are you currently an Amazon Prime customer?
+                </h3>
+
+                <div class="question__options animated fadeIn">
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    No
+                  </button>
+                </div>
+
+                <div class="question__footer">
+                  <h3 class="question__footer-heading">
+                    Amazon Rewards Survey
+                  </h3>
+                  <h4 class="question__date">
+                    <span class="today-month">April</span>
+                    <span class="today-date">23</span>,
+                    <span class="today-year">2022</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="question-2"
+      class="modal transparent-modal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+        >
+          <span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent-modal__child--no-margin"
+            >
+              <div class="question">
+                <div style="text-align: center" class="animated fadeIn">
+                  <div class="question__title">Question 2 of 6</div>
+                </div>
+                <h3 class="question__question animated fadeIn">
+                  When was the last time you shopped on Amazon?
+                </h3>
+
+                <div class="question__options animated fadeIn">
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    2023
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    2022
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    2021
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    2020
+                  </button>
+                </div>
+
+                <div class="question__footer">
+                  <h3 class="question__footer-heading">
+                    Amazon Rewards Survey
+                  </h3>
+                  <h4 class="question__date">
+                    <span class="today-month">April</span>
+                    <span class="today-date">23</span>,
+                    <span class="today-year">2022</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="question-3"
+      class="modal transparent-modal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent-modal__child--no-margin"
+            >
+              <div class="question">
+                <div style="text-align: center" class="animated fadeIn">
+                  <div class="question__title">Question 3 of 6</div>
+                </div>
+                <h3 class="question__question animated fadeIn">
+                  Which of the following online retailers is your favorite?
+                </h3>
+
+                <div class="question__options animated fadeIn">
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Amazon
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Walmart
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Costco
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Target
+                  </button>
+                </div>
+
+                <div class="question__footer">
+                  <h3 class="question__footer-heading">
+                    Amazon Rewards Survey
+                  </h3>
+                  <h4 class="question__date">
+                    <span class="today-month">April</span>
+                    <span class="today-date">23</span>,
+                    <span class="today-year">2022</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="question-4"
+      class="modal transparent-modal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent-modal__child--no-margin"
+            >
+              <div class="question">
+                <div style="text-align: center" class="animated fadeIn">
+                  <div class="question__title">Question 4 of 6</div>
+                </div>
+                <h3 class="question__question animated fadeIn">
+                  How many Amazon products do you currently possess?
+                </h3>
+
+                <div class="question__options animated fadeIn">
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    None
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    1
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    2
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    3
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    5
+                  </button>
+                </div>
+
+                <div class="question__footer">
+                  <h3 class="question__footer-heading">
+                    Amazon Rewards Survey
+                  </h3>
+                  <h4 class="question__date">
+                    <span class="today-month">April</span>
+                    <span class="today-date">23</span>,
+                    <span class="today-year">2022</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="question-5"
+      class="modal transparent-modal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent__modal--child--no-margin"
+            >
+              <div class="question">
+                <div style="text-align: center" class="animated fadeIn">
+                  <div class="question__title">Question 5 of 6</div>
+                </div>
+                <h3 class="question__question animated fadeIn">
+                  Which of the following categories are your favorites to purchase from?
+                </h3>
+
+                <div class="question__options animated fadeIn">
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Electronics
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Beauty & Health
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Outdoors
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Sports
+                  </button>
+                </div>
+
+                <div class="question__footer">
+                  <h3 class="question__footer-heading">
+                    Amazon Rewards Survey
+                  </h3>
+                  <h4 class="question__date">
+                    <span class="today-month">April</span>
+                    <span class="today-date">23</span>,
+                    <span class="today-year">2022</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="question-6"
+      class="modal transparent-modal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div
+              class="transparent-modal__child transparent-modal__child--no-margin"
+            >
+              <div class="question">
+                <div style="text-align: center" class="animated fadeIn">
+                  <div class="question__title">Question 6 of 6</div>
+                </div>
+                <h3 class="question__question animated fadeIn">
+                  Please select your citizenship (only for U.S. citizens)
+                </h3>
+
+                <div class="question__options animated fadeIn">
+                  <button
+                    id="7y"
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    U.S Citizen
+                  </button>
+                  <button
+                    id="7n"
+                    type="button"
+                    class="btn btn-block btn-primary question__option"
+                    data-dismiss="modal"
+                  >
+                    Non U.S Citizen
+                  </button>
+                </div>
+
+                <div class="question__footer">
+                  <h3 class="question__footer-heading">
+                    Amazon Rewards Survey
+                  </h3>
+                  <h4 class="question__date">
+                    <span class="today-month">April</span>
+                    <span class="today-date">23</span>,
+                    <span class="today-year">2022</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="id-que" style="display: none;">
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+        <img
+          src="./assets/images/amazon-logo-transparent.png"
+          style="max-width: 80px"
+        />
+
+        <br />
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+
+      <!-- boxes here  -->
+
+      <div class="main-content" id="content3">
+        <script type="text/javascript">
+          var box_ini = false;
+        </script>
+        <link rel="stylesheet" type="text/css" href="./assets/box.min.css" />
+        <style type="text/css">
+          .boxes {
+            background-image: url("./assets/img-1.png");
+          }
+        </style>
+        <div id="boxes" class="boxes">
+          <div class="div_img_gift">
+            <img class="img_gift box-gift" src="./assets/ipd.png" />
+          </div>
+          <div id="0" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+            <div class="caja_trasera">
+            </div>
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="1" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="2" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="3" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="4" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="5" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="6" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="7" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="8" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="9" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="10" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+          <div id="11" class="try temblor">
+            <div class="caja_tapa">
+              <img class="box-01" src="./assets/box-top.png" />
+            </div>
+
+            <div class="caja_gift">
+              <img class="box-04" src="./assets/ipd-box.png" />
+            </div>
+            <div class="caja">
+              <img class="box-02" src="./assets/box-bottom.png" />
+            </div>
+          </div>
+        </div>
+        <div
+          id="p_modal1"
+          class="modal fade text-center p_modal"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+          style="padding: 0;"
+        >
+          <div class="modal-dialog" role="document" style=" max-width: 100%; margin: 0;">
+            <div class="modal-content">
+              <div class="modal-body">
+                <img class="temblor_inf box-00" src="./assets/box-full.png" />
+                <h2>
+                  Your LAST step to get the <strong>Apple Ipad Pro</strong>
+                </h2>
+                <p>
+                  Thank You! We have received your answers. Now all you have to
+                  do is to
+                  <strong
+                    >choose the correct box with the Ipad Pro inside.</strong
+                  ><br /><br />
+                  You have 3 attempts. Good luck!
+                </p>
+                <button
+                  type="button"
+                  id="p_modal_button1"
+                  class="btn btn-primary brand-btn"
+                  data-dismiss="modal"
+                  style="font-size: 20px;"
+                >
+                  START NOW
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="p_modal2"
+          class="modal fade text-center p_modal"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+          style="padding: 0;"
+          >
+          <div class="modal-dialog" role="document" style=" max-width: 100%; margin: 0;">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="circle-loader">
+                  <div class="checkmark draw"></div>
+                </div>
+                <h2>OOPS…</h2>
+                <p>It's not in that one</p>
+                <p>You have 2 more tries!</p>
+                <button
+                  type="button"
+                  id="p_modal_button2"
+                  class="btn btn-primary brand-btn"
+                  data-dismiss="modal"
+                  style="font-size: 20px;"
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="p_modal3"
+          class="modal fade text-center p_modal"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+          style="padding: 0;"
+          >
+            <div class="modal-dialog" role="document" style=" max-width: 100%; margin: 0;">
+            <div class="modal-content">
+              <div class="modal-body">
+                <img
+                  class="box-gift"
+                  style="width: 250px"
+                  src="./assets/ipd-2.png"
+                />
+                <h2>Congratulations!</h2>
+                <p>The Ipad Pro is reserved for you!</p>
+                <p><strong>***Instructions***</strong></p>
+                <p>
+                  1. Click the button below to go to the event page to claim the
+                  Ipad Pro.
+                </p>
+                <p>
+                  2. Fill in your delivery details, then pay
+                  <span style="color: darkblue; font-weight: bold">$9.95</span>
+                  with your credit card.
+                </p>
+                <p>
+                  3. A confirmation will be sent to your email within 3 working
+                  days, and the Ipad Pro will be delivered to your address
+                  within a week via Fedex.
+                </p>
+                <a
+                  href="https://sftdn-fast.com/?a=146607&c=368821"
+                  id="p_modal_button3"
+                 
+                  type="button"
+                  class="btn btn-primary brand-btn"
+                  data-dismiss="modal"
+                  style="font-size: 20px;"
+                  
+
+                  >Claim My Ipad Pro</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end boxes here  -->
+    </div>
+
+
+    <div
+      id="loading-screen"
+      class="modal transparent-modal bd-example-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <header
+        class="bg-black"
+        style="
+          padding-top: 7px;
+          padding-bottom: 7px;
+          text-align: center;
+          width: 100%;
+          display: inline-block;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        "
+      >
+      <img
+      src="./assets/images/amazon-logo-transparent.png"
+      style="max-width: 80px"
+    />
+    <br/>
+        <span
+          style="
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 27px;
+            display: inline-block;
+            color: white;
+          "
+          ><span class="today-month">April</span>
+          <span class="today-date">23</span>,
+          <span class="today-year">2022</span>
+          <img
+            src="assets/images/flaglogo.png"
+            alt="img"
+            style="width: 20px; display: inline-block; vertical-align: middle"
+          />
+        </span>
+      </header>
+
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body" style="padding: 0">
+            <div class="loading__heading transparent-modal__child">
+              <p style="margin-bottom: 0; text-align: center">
+                Please wait while we process your answers...
+              </p>
+            </div>
+
+            <div
+              class="loading__content transparent-modal__child transparent-modal__child--no-margin"
+              style="margin-bottom: 0"
+            >
+              <div class="validate wrapper hidden">
+                <div class="wrapper">
+                  <br />
+                  <table width="100%">
+                    <tbody>
+                      <tr>
+                        <td align="left">
+                          <p id="v1b">Submitting answers..</p>
+                          <p id="v2b">Checking for duplicate IP addresses...</p>
+                          <p id="v3b">Checking our inventory for products...</p>
+                          <p id="vfinal">Congratulations!</p>
+                        </td>
+                        <td align="right"><span id="szazalek">0%</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div style="width: 100%; margin: 0px auto; margin: 10px 0">
+                    <div id="szlider">
+                      <div id="szliderbar"></div>
+                      <div id="szazalek"></div>
+                    </div>
+                  </div>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td width="40px">
+                          <img id="v1a" src="assets/images/loading.gif" /><img
+                            id="v1c"
+                            style="display: none"
+                            src="assets/images/fb-check.jpg"
+                            class="hidden"
+                          />
+                        </td>
+                        <td><p id="v1d">Answers submitted</p></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img id="v2a" src="assets/images/loading.gif" /><img
+                            id="v2c"
+                            style="display: none"
+                            src="assets/images/fb-check.jpg"
+                            class="hidden"
+                          />
+                        </td>
+                        <td><p id="v2d">IP address check</p></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img id="v3a" src="assets/images/loading.gif" /><img
+                            id="v3c"
+                            style="display: none"
+                            src="assets/images/fb-check.jpg"
+                            class="hidden"
+                          />
+                        </td>
+                        <td><p id="v3d">Products available in stock</p></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br />
+                </div>
+              </div>
+            </div>
+       
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/jquery.js"></script>
+    <script src="assets/popper.js"></script>
+    <script src="assets/bootstrap.js"></script>
+    <script>
+      window.info = {};
+
+      var boxRoot,
+        count = 1,
+        intentos = 3,
+        puedo = !1;
+      !(function () {
+        "use strict";
+        (boxRoot = {
+          _init: function () {
+            setTimeout(function () {
+              jQuery("#p_modal1").modal();
+            }, 1e3),
+              jQuery(".try").on("click", function () {
+                puedo &&
+                  count <= intentos &&
+                  (jQuery(this).hasClass("abierta") ||
+                    ((puedo = !1),
+                    jQuery(".circle-loader").removeClass("load-complete"),
+                    jQuery(".checkmark").css("display", "none"),
+                    jQuery(this).addClass("abierta"),
+                    2 == count
+                      ? (jQuery(this).addClass("premiazo"),
+                        setTimeout(function () {
+                          jQuery(".div_img_gift, .img_gift").fadeIn(
+                            "slow",
+                            function () {
+                              setTimeout(function () {
+                                jQuery("#p_modal3").modal(),
+                                  jQuery(".circle-loader").addClass(
+                                    "load-complete"
+                                  ),
+                                  jQuery(".checkmark").css("display", "block");
+                              }, 1500);
+                            }
+                          );
+                        }, 4e3))
+                      : (count++,
+                        intentos--,
+                        jQuery("#num_intentos").html(intentos),
+                        setTimeout(function () {
+                          jQuery("#p_modal2").modal(),
+                            setTimeout(function () {
+                              jQuery(".circle-loader").addClass(
+                                "load-complete"
+                              ),
+                                jQuery(".checkmark").css("display", "block"),
+                                (puedo = !0);
+                            }, 1e3);
+                        }, 2e3))));
+              }),
+              jQuery("#p_modal_button1").on("click", function (e) {
+                e.stopPropagation(),
+                  jQuery("#p_modal1").modal("hide"),
+                  (puedo = !0);
+              }),
+              jQuery("#p_modal_button2").on("click", function (e) {
+                e.stopPropagation(), jQuery("#p_modal2").modal("hide");
+              }),
+              jQuery("#p_modal_button3").on("click", function (e) {
+                e.stopPropagation(), jQuery("#p_modal3").modal("hide");
+              });
+          },
+        }),
+          jQuery(document).ready(function () {
+            "undefined" == typeof box_ini &&
+              0 < jQuery("#boxes").length &&
+              boxRoot._init();
+          });
+      })();
+    </script>
+
+    <script>
+      function drawszlider(a, b) {
+        var c = Math.round((100 * b) / a);
+        (document.getElementById("szliderbar").style.width = c + "%"),
+          (document.getElementById("szazalek").innerHTML = c + "%"),
+          (holvanszlider = b),
+          (t = setTimeout(
+            "drawszlider(100, slidewhere);slidewhere = holvanszlider + 1; if (slidewhere > 100) {slidewhere = 100;}",
+            62
+          ));
+      }
+
+      var slidewhere = 0,
+        holvanszlider = 0;
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#myModal").modal("show");
+        // $('#email-form').modal('show');
+        // $('#offer-wall').modal('show');
+
+        $("#myModal").on("hidden.bs.modal", function () {
+          $("#question-1").modal("show");
+        });
+
+        $("#question-1").on("hidden.bs.modal", function () {
+          $("#question-2").modal("show");
+        });
+
+        $("#question-2").on("hidden.bs.modal", function () {
+          $("#question-3").modal("show");
+        });
+
+        $("#question-3").on("hidden.bs.modal", function () {
+          $("#question-4").modal("show");
+        });
+
+        $("#question-4").on("hidden.bs.modal", function () {
+          $("#question-5").modal("show");
+        });
+
+        $("#question-5").on("hidden.bs.modal", function () {
+          $("#question-6").modal("show");
+        });
+        $("#question-6").on("hidden.bs.modal", function () {
+
+
+          $("#loading-screen").modal("show");
+
+          var o = document.querySelector(".validate");
+          (o.className = "validate"),
+            (document.querySelector("#v1a").style.display = "block"),
+            (document.querySelector("#v1b").style.display = "block"),
+            (document.querySelector("#v2b").style.display = "none"),
+            (document.querySelector("#v3b").style.display = "none"),
+            (document.querySelector("#vfinal").style.display = "none"),
+            drawszlider(10, 0),
+            setTimeout(function () {
+              (document.querySelector("#v1a").style.display = "none"),
+                (document.querySelector("#v1b").style.display = "none"),
+                (document.querySelector("#v1c").style.display = "block"),
+                (document.querySelector("#v1d").style.display = "block"),
+                (document.querySelector("#v2a").style.display = "block"),
+                (document.querySelector("#v2b").style.display = "block");
+            }, 2e3),
+            setTimeout(function () {
+              (document.querySelector("#v2a").style.display = "none"),
+                (document.querySelector("#v2b").style.display = "none"),
+                (document.querySelector("#v2c").style.display = "block"),
+                (document.querySelector("#v2d").style.display = "block"),
+                (document.querySelector("#v3a").style.display = "block"),
+                (document.querySelector("#v3b").style.display = "block");
+            }, 4500),
+            setTimeout(function () {
+              (document.querySelector("#v3a").style.display = "none"),
+                (document.querySelector("#v3b").style.display = "none"),
+                (document.querySelector("#v3c").style.display = "block"),
+                (document.querySelector("#v3d").style.display = "block"),
+                (document.querySelector("#vfinal").style.display = "block");
+            }, 6500),
+            setTimeout(function () {
+              $("#loading-screen").modal("hide");
+              boxRoot._init();
+              $("#id-que").attr("style", "display: block;")
+              $("#content3").fadeIn();
+              // console.log('completed...');
+            }, 7e3);
+
+
+          
+        });
+      });
+    </script>
+
+    <script>
+      (function () {
+        let today = new Date();
+        let weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+        let monthNames = new Array();
+        monthNames[0] = "January";
+        monthNames[1] = "February";
+        monthNames[2] = "March";
+        monthNames[3] = "April";
+        monthNames[4] = "May";
+        monthNames[5] = "June";
+        monthNames[6] = "July";
+        monthNames[7] = "August";
+        monthNames[8] = "September";
+        monthNames[9] = "October";
+        monthNames[10] = "November";
+        monthNames[11] = "December";
+
+        let day = weekday[today.getDay()];
+        let month = monthNames[today.getMonth()];
+        let date = today.getDate();
+        let year = today.getFullYear();
+
+        if (date < 10) {
+          date = "0" + date;
+        }
+
+        $(".today-day").html(day);
+        $(".today-month").html(month);
+        $(".today-date").html(date);
+        $(".today-year").html(year);
+        $("#today-month-1").html(month);
+        $("#today-date-1").html(date);
+        $("#today-year-1").html(year);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        // Set the date we're counting down to
+        var countDownDate = new Date().getTime() + 570000;
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+          // Get today's date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Output the result in an element with id="demo"
+          // document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+          // + minutes + "m " + seconds + "s ";
+
+          if (minutes < 10) {
+            $(".countdown-minutes").html("0" + minutes);
+          } else {
+            $(".countdown-minutes").html(minutes);
+          }
+
+          if (seconds < 10) {
+            $(".countdown-seconds").html("0" + seconds);
+          } else {
+            $(".countdown-seconds").html(seconds);
+          }
+
+          // If the count down is over, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+          }
+        }, 1000);
+      })();
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        var event = new Date();
+        var options = { weekday: "long" };
+        var name = event.toLocaleDateString("en-US", options);
+        document.getElementById("daye-name-1").textContent = name;
+        document.getElementById("daye-name-2").textContent = name;
+      });
+      $.get(
+        "https://ipinfo.io",
+        function (response) {
+          document.getElementById("ip-info").textContent = `(${response.ip}) `;
+        },
+        "json"
+      );
+      var blink = document.getElementById("ip-info");
+      setInterval(function () {
+        blink.style.opacity = blink.style.opacity == 0 ? 1 : 0;
+      }, 1000);
+    </script>
+  </body>
+</html>
