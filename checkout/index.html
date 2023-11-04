@@ -1,7 +1,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <base href="." />
+    
     <title>iPad Pro</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
@@ -36,7 +36,7 @@
           <div class="col-12 col-lg-5">
             <div class="intro-form">
               <div class="intro-form__form checkout2-css">
-                <div class="s1-formBox" id="topfrm">
+                <div class="s1-formBox" >
                   <div class="s1-from-inner show-3ds-popup">
                     <div
                       class="checkout-form has-validation-callback"
@@ -49,6 +49,7 @@
                         placeholder="Full Name"
                         type="text"
                         data-threeds="pan"
+                        required
                       />
 
                       <input
@@ -57,6 +58,8 @@
                         type="email"
                         placeholder="Email address"
                         data-threeds="pan"
+                        required
+
                       />
 
                       <input
@@ -65,12 +68,15 @@
                         placeholder="Address"
                         type="text"
                         data-threeds="pan"
+                        required
+
                       />
        
                     <select
                       class="form-control required selcet-fld"
                       name="state"
                       data-threeds="State"
+                      required
                     >
                       <option value="">State</option>
                       <option value="AL">Alabama</option>
@@ -132,6 +138,7 @@
                         placeholder="City"
                         type="text"
                         data-threeds="pan"
+                        required
                       />
                       <div class="clearall"></div>
                   </div>
@@ -144,8 +151,8 @@
 
           <div class="col-12 col-lg-5">
             <div class="intro-form">
-              <div  class="intro-form__form checkout2-css" id="pay-for">
-                <div class="s1-formBox" id="topfrm">
+              <div  class="intro-form__form checkout2-css" >
+                <div class="s1-formBox" >
                   <div class="s1-frmTop">
                     <img
                       src="./assets/8e8aaae31530c2d24d4647c4fcc15fb8.png"
@@ -182,12 +189,14 @@
                         placeholder="Credit Card Number"
                         type="tel"
                         data-threeds="pan"
+                        required
                       />
                       <select
                         class="form-control required selcet-fld fld-hlf"
                         id="cardExpMonth"
                         name="expMonth"
                         data-threeds="month"
+                        required
                       >
                         <option value="">Month</option>
                         <option value="01">1</option>
@@ -208,6 +217,7 @@
                         id="cardExpYear"
                         name="expYear"
                         data-threeds="year"
+                        required
                       >
                         <option value="">Year</option>
                         <option value="2023">2023</option>
@@ -232,19 +242,7 @@
                         name="cvv"
                         placeholder="CVV/CVC"
                         type="tel"
-                      />
-                      <input
-                        type="hidden"
-                        name="paayAmount"
-                        id="paayAmount"
-                        value="90.95"
-                        data-threeds="amount"
-                      />
-                      <input
-                        type="hidden"
-                        name="x_transaction_id"
-                        value="id-okgeqw1vfw"
-                        data-threeds="id"
+                        required
                       />
                       <div class="clearall"></div>
                       <button type="submit" class="bnr-frm-submit pulse">
@@ -270,7 +268,5 @@
         </form>
       </div>
     </div>
-    <script text="text/javascript" src="../assets/jquery.min.js"></script>
-
   </body>
 </html>
